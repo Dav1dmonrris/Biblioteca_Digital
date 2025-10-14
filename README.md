@@ -2,6 +2,6 @@
 
 
 <div align="center">
-   <img src="Biblioteca_Digital.png" alt="web" width="450"/>
+   <img src="Biblioteca_Digital01.png" alt="web" width="450"/>
 </div>
 Biblioteca Digital
