@@ -5,6 +5,7 @@ if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'admin'){
     exit;
 }
 
+// CONEXIÓN A LA BASE DE DATOS ----*
 include('Conexion.php');
 $conexion = conexion();
 
