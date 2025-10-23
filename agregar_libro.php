@@ -10,6 +10,7 @@ $conexion = conexion();
 
 // AGREGAR NUEVO LIBRO
 if($_POST){
+
     $titulo = $_POST['titulo'];
     $año = $_POST['año'];
     $id_autor = $_POST['id_autor'];
@@ -57,13 +58,16 @@ $autores = $conexion->query("SELECT * FROM autores");
 <!-- LISTA DE LIBROS EXISTENTES -->
 <h3>Libros Existentes</h3>
 <table border="1">
+
     <tr>
+
         <th>ID</th>
         <th>Título</th>
         <th>Año</th>
         <th>Autor</th>
         <th>Reseña</th>
         <th>Acciones</th>
+
     </tr>
     <?php while($libro = $resultado_libros->fetch_assoc()): ?>
     <tr>
@@ -79,6 +83,21 @@ $autores = $conexion->query("SELECT * FROM autores");
     </tr>
     <?php endwhile; ?>
 </table>
+
+<h3>Usuarios existentes</h3>
+<br><br>
+
+<table border = "1">
+    <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Fecha de registro</th>
+    </tr>
+
+
+
+</table>
+
 
 <br>
 <a href="logout.php">Cerrar Sesión</a>
