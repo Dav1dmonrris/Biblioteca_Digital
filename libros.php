@@ -67,4 +67,44 @@ $autores = $conexion->query("SELECT * FROM autores");
     </tr>
     <?php endwhile; ?>
 </table>
+
+
+<!--- 20/10/22 -->
+
+<h3>Usuarios existentes</h3>
+
+<?php
+// OBTENER USUARIOS PARA LA TABLA
+$resultado_usuarios = $conexion->query("SELECT * FROM usuarios");
+?>
+
+<table border="1">
+    <tr>
+
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Fecha de registro</th>
+        <th>Acciones</th>
+        
+    </tr>
+    <?php while($usu = $resultado_usuarios->fetch_assoc()): ?>
+    <tr>
+
+        <td><?php echo $usu['nombre']; ?></td>
+        <td><?php echo $usu['email']; ?></td>
+        <td><?php echo $usu['fecha_registro']; ?></td>
+
+        <td>
+
+            <a href="editar_usuario.php?id=<?php echo $usu['id_usuario']; ?>">Editar</a>
+            <a href="eliminar_usuario.php?id=<?php echo $usu['id_usuario']; ?>">Eliminar</a>
+
+        </td>
+    </tr>
+
+    <?php endwhile; ?>
+
+</table>
+
+<br>
 <a href="logout.php">Cerrar Sesión</a>
