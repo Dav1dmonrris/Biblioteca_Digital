@@ -36,7 +36,19 @@ if($_POST){
 }
 ?>
 
+<!DOCTYPE html>
+<html>  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Libros">
+    <link rel="stylesheet" href="CSS/estilo.css">
+    <title>Libreria el inge</title>
+
+</head>
+
 <h2>Editar Libro</h2>
+
 <form method="post">
     Título: <input type="text" name="titulo" value="<?php echo $libro['titulo']; ?>" required><br>
     Año: <input type="number" name="año" value="<?php echo $libro['año']; ?>" required><br>
@@ -52,3 +64,5 @@ if($_POST){
     <input type="submit" value="Actualizar Libro">
 </form>
 <a href="libros.php">Cancelar</a>
+
+</html>

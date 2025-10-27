@@ -34,6 +34,18 @@ if($_POST){
 }
 ?>
 
+<!DOCTYPE html>
+<html>  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Libros">
+    <link rel="stylesheet" href="CSS/estilo.css">
+    <title>Libreria el inge</title>
+
+</head>
+
+
 <h2>Editar Perfil</h2>
 <form method="post">
     Nombre: <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>" required><br>
@@ -41,3 +53,4 @@ if($_POST){
     <input type="submit" value="Actualizar">
 </form>
 <a href="perfil_usuario.php">Cancelar</a>
+</html>

@@ -27,6 +27,17 @@ $resultado_libros = $conexion->query("SELECT l.*, a.nombre as autor_nombre FROM 
 $autores = $conexion->query("SELECT * FROM autores");
 ?>
 
+
+<!DOCTYPE html>
+<html>  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Libros">
+    <link rel="stylesheet" href="CSS/estilo.css">
+    <title>Libreria el inge</title>
+
+</head>
 <h2>Gestión de Libros</h2>
 
 <form method="post">
@@ -96,7 +107,6 @@ $resultado_usuarios = $conexion->query("SELECT * FROM usuarios");
 
         <td>
 
-            <a href="editar_usuario.php?id=<?php echo $usu['id_usuario']; ?>">Editar</a>
             <a href="eliminar_usuario.php?id=<?php echo $usu['id_usuario']; ?>">Eliminar</a>
 
         </td>
@@ -108,3 +118,4 @@ $resultado_usuarios = $conexion->query("SELECT * FROM usuarios");
 
 <br>
 <a href="logout.php">Cerrar Sesión</a>
+</html>

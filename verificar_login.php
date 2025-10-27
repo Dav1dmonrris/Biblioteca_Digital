@@ -10,7 +10,7 @@ $tipo = $_POST['tipo_usuario'];
 if($tipo == 'usuario'){
     $sql = "SELECT * FROM usuarios WHERE email = ?";
     $tabla = 'usuarios';
-    $redirect = 'perfil_usuario.php';
+    $redirect = 'buscar_libro.php';
 } else {
     $sql = "SELECT * FROM administradores WHERE email = ?";
     $tabla = 'administradores';
