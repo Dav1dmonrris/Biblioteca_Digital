@@ -3,7 +3,24 @@ Documento de ejemplo
 
 Usuarios de prueba para la base de datos Biblioteca.
 
----------
+-------------------------------------------------
 Usuarios:
+-------------------------------------------------
+elpepe@email.com
+123
+
+carlos@email.com
+123
+
+-------------------------------------------------
+Administradores:
+-------------------------------------------------
+admin@biblioteca.com
+admin
+
+admin1@biblioteca.com
+admin
+
+
 
 
