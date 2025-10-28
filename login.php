@@ -14,10 +14,16 @@ if(isset($_SESSION['usuario'])){
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8"> <!-- <---------------------------- Mostrar caracteres especiales correctamente -->
     <title>Login - Biblioteca</title>
+    <link rel="stylesheet" type="text/css" href="login.css"> <!-- Enlazar el archivo CSS (login.css) -->
 </head>
+
+<!-- Cuerpo del formulario de login -->
+<!------------------------------------>
 <body>
     <h2>Iniciar Sesión</h2>
+    
     <form action="verificar_login.php" method="post">
         <input type="email" name="email" placeholder="Email" required><br>
         <input type="password" name="password" placeholder="Contraseña" required><br>
