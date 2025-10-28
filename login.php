@@ -22,9 +22,12 @@ if(isset($_SESSION['usuario'])){
 <!-- Cuerpo del formulario de login -->
 <!------------------------------------>
 <body>
-    <h2>Iniciar Sesión</h2>
+    
 
     <form action="verificar_login.php" method="post">
+
+    <h2>Iniciar Sesión</h2>
+    
         <input type="email" name="email" placeholder="Email" required><br>
         <input type="password" name="password" placeholder="Contraseña" required><br>
 
