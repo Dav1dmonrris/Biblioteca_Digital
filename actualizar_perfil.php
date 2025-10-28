@@ -36,21 +36,21 @@ if($_POST){
 
 <!DOCTYPE html>
 <html>  
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Libros">
-    <link rel="stylesheet" href="CSS/estilo.css">
-    <title>Libreria el inge</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Libros">
+        <link rel="stylesheet" href="CSS/actualizar_perfil.css">
+        <title>Libreria el inge</title>
 
-</head>
+    </head>
 
 
-<h2>Editar Perfil</h2>
-<form method="post">
-    Nombre: <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>" required><br>
-    Email: <input type="email" name="email" value="<?php echo $usuario['email']; ?>" required><br>
-    <input type="submit" value="Actualizar">
-</form>
+    <h2>Editar Perfil</h2>
+    <form method="post">
+        Nombre: <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>" required><br>
+        Email: <input type="email" name="email" value="<?php echo $usuario['email']; ?>" required><br>
+        <input type="submit" value="Actualizar">
+    </form>
 <a href="perfil_usuario.php">Cancelar</a>
 </html>
