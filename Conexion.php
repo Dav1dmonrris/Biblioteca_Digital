@@ -3,7 +3,7 @@
 <!--============================================================================================-->
 <?php
 
-// Usar tu función de conexión --------------------------------------------------*
+// Crear la función de conexión --------------------------------------------------*
 function conexion(){
     $mysqli_conexion = new mysqli("localhost", "root", "", "Biblioteca");
 
@@ -15,6 +15,5 @@ function conexion(){
 }
 
 $conexion = conexion();
-
 $conexion->close();
 ?>
