@@ -1,5 +1,9 @@
+<!--============================================================================================-->
+<!--                            Crear la conexión a la base de datos                            -->
+<!--============================================================================================-->
 <?php
-// Usamos tu función de conexión
+
+// Usar tu función de conexión --------------------------------------------------*
 function conexion(){
     $mysqli_conexion = new mysqli("localhost", "root", "", "Biblioteca");
 
@@ -11,8 +15,6 @@ function conexion(){
 }
 
 $conexion = conexion();
-
-
 
 $conexion->close();
 ?>
