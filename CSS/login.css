@@ -1,6 +1,6 @@
 /* Estilos generales para el cuerpo de la página */
 body{
-    background-color: #ffffffee;
+    background-color: #f3dcdcee;
     text-size-adjust: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -72,7 +72,7 @@ select:focus {
 
 /* Estilos para el botón de envío */
 input[type="submit"] {
-    background-color: #5aacea;
+    background-color: #ff8c44;
     color: white;
     padding: 5px 40px;
     border: none;
@@ -82,5 +82,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #4a89d1;
+    background-color: #944a00;
 }

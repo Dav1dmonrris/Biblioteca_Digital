@@ -1,1 +1,9 @@
 Documento de ejemplo
+===================================================
+
+Usuarios de prueba para la base de datos Biblioteca.
+
+---------
+Usuarios:
+
+
