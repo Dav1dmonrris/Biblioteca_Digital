@@ -42,7 +42,7 @@ if($_POST){
         <meta name="description" content="Libros">
         <link rel="stylesheet" href="CSS/actualizar_perfil.css">
         <title>Libreria el inge</title>
-
+        
     </head>
 
 
