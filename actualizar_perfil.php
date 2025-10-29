@@ -37,7 +37,7 @@ if($_POST){
 <!DOCTYPE html>
 <html>  
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8">                                                  <!-- Etiqueta meta para definir la codificación de caracteres -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Libros">
         <link rel="stylesheet" href="CSS/actualizar_perfil.css">
