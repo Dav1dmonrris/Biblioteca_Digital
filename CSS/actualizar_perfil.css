@@ -1,6 +1,69 @@
 body{
     background-color: #f3dcdcee;
+    text-size-adjust: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 20px;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h2{
+    text-align: center;
+    color: #333;
+}
+
+form {
+    background-position: center;
+    background-color: #ffffffcc;
+    padding: 30px 80px;
+    
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    width: 320px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 80%;
+    padding: 10px 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    text-size-adjust: 100%;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus {
+    border-color: #2b2b2b;
+    box-shadow: 0 0 8px rgba(52, 52, 52, 0.3);
+    outline: none;
+}
+
+input[type="submit"] {
+    background-color: #ff9d80;
+    color: white;
+    padding: 5px 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancelar {
+    background-color: #d58484;
+    color: white;
+    padding: 5px 48px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
 }
