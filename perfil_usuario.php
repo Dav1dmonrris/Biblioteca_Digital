@@ -1,3 +1,6 @@
+<!--============================================================================================-->
+<!--                        Codigo PHP para mostrar el perfil del usuario                       -->
+<!--============================================================================================-->
 <?php
 session_start();
 if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'usuario'){
@@ -5,8 +8,8 @@ if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'usuario'){
     exit;
 }
 
-include('Conexion.php');
-$conexion = conexion();
+include('Conexion.php');                        # <- Incluir el archivo de conexión a la base de datos
+$conexion = conexion();                         # <- Establecer la conexión a la base de datos.
 
 $email = $_SESSION['email'];
 $sql = "SELECT * FROM usuarios WHERE email = ?";
@@ -16,24 +19,32 @@ $stmt->execute();
 $usuario = $stmt->get_result()->fetch_assoc();
 ?>
 
+<!--============================================================================================-->
+<!--                                  Perfil de usuario (html)                                  -->
+<!--============================================================================================-->
 <!DOCTYPE html>
 <html>  
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Libros">
-    <link rel="stylesheet" href="CSS/estilo.css">
-</head>
-<body>
-<h2>Mi Perfil</h2>
-<p><strong>Nombre:</strong> <?php echo $usuario['nombre']; ?></p>
-<p><strong>Email:</strong> <?php echo $usuario['email']; ?></p>
-<p><strong>Fecha de registro:</strong> <?php echo $usuario['fecha_registro']; ?></p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Libros">
+        <link rel="stylesheet" href="CSS/perfil_usuario.css">
+    </head>
 
-<a href="actualizar_perfil.php">Editar Perfil</a>
-<a href="buscar_libro.php">Volver</a>
-<a href="logout.php">Cerrar Sesión</a>
+    <body>
+        <h2>Mi Perfil</h2>
 
-    
-</body>
+        <!-- Mostrar información correspondiente del usuario -->
+        <!----------------------------------------------------->
+        <p><strong>Nombre:</strong> <?php echo $usuario['nombre']; ?></p>
+        <p><strong>Email:</strong> <?php echo $usuario['email']; ?></p>
+        <p><strong>Fecha de registro:</strong> <?php echo $usuario['fecha_registro']; ?></p>
+
+        <!-- Mostrar botones de opciones para el usuario -->
+        <!------------------------------------------------->
+        <a href="actualizar_perfil.php" class="btn_EditarPerfil">Editar Perfil</a>
+        <a href="buscar_libro.php" class="btn_volver">Volver</a>
+        <a href="logout.php" class="btn_CerrarSesion">Cerrar Sesión</a>
+
+    </body>
 </html>

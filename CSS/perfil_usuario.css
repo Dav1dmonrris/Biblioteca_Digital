@@ -1,0 +1,52 @@
+
+
+body{
+    background-color: #f3dcdcee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/*  Cambiar el estilo de los links a botones  */
+/* ------------------------------------------ */
+.btn_EditarPerfil { /*Botón para editar perfil*/
+    background-color: #d58484;
+    color: white;
+    padding: 5px 48px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+.btn_EditarPerfil:hover {   /*Efecto hover*/
+    background-color: #b36b6b;
+}
+
+.btn_volver {   /*Botón para volver al inicio*/
+    background-color: #ff9d80;
+    color: white;
+    padding: 5px 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+.btn_volver:hover {  /*Efecto hover*/
+    background-color: #e67a5d;
+}
+
+.btn_CerrarSesion {  /*Botón para cerrar sesión*/
+    background-color: #ff4d4d;
+    color: white;
+    padding: 5px 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+.btn_CerrarSesion:hover {   /*Efecto hover*/
+    background-color: #e63232;
+}
