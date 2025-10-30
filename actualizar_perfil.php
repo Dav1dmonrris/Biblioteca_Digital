@@ -57,13 +57,14 @@ if($_POST){
     <!-- Formulario para actualizar el perfil del usuario -->
     <!------------------------------------------------------>
     <form method="post">
-        Nombre: <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>" required><br>
-        Email: <input type="email" name="email" value="<?php echo $usuario['email']; ?>" required><br>
+        <p>Nombre:</p>
+        <!---Nombre:--> <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>" required><br>
+        <p>Email:</p>
+        <!--Email:--> <input type="email" name="email" value="<?php echo $usuario['email']; ?>" required><br>
 
         <br>
         <input type="submit" value="Actualizar">
-
-        <br><br>
+        
         <a href="perfil_usuario.php" class="btn-cancelar">Cancelar</a>
     </form>
 

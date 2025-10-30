@@ -15,6 +15,7 @@ h2{
     color: #333;
 }
 
+/*
 form {
     background-position: center;
     background-color: #ffffffcc;
@@ -26,7 +27,7 @@ form {
     text-align: center;
     margin: 0 auto;
 }
-
+*/
 input[type="text"],
 input[type="email"] {
     width: 80%;
@@ -66,4 +67,12 @@ input[type="submit"] {
     font-size: 1em;
     transition: background-color 0.3s ease;
     text-decoration: none;
+}
+
+p{
+    text-align: left;
+    margin-top: 10px;
+    color: #555;
+    font-weight: 500;
+    font-size: 20px;
 }
