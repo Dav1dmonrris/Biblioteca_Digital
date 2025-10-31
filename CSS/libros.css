@@ -14,12 +14,30 @@ body {
     min-height: 100vh;
 }
 
+header {
+    background-color: #ff9c9c; 
+    margin-left: -20px;       /* mueve el header a la izquierda 20px */
+    margin-right: -40px;
+    margin-top: -20px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% + 40px);
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
 /* ENCABEZADOS */
 h2 {
     text-align: center;
     color: #333;
     margin-bottom: 30px;
     font-size: 32px;
+    margin-top: 30px;
 }
 
 h3 {
@@ -36,7 +54,7 @@ form {
     border-radius: 25px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     width: 400px;
-    margin: 0 auto 40px auto;
+    /*margin: 0 auto 40px auto;*/
 }
 
 form span {

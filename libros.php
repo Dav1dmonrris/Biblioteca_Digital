@@ -43,9 +43,9 @@ $autores = $conexion->query("SELECT * FROM autores");
     <title>Libreria el inge</title>
 </head>
 
-<header>
+<header><h1>LIBRERÍA EL INGE</h1></header>
+
 <h2>Gestión de Libros</h2>
-</header>
 
 <!-- **---------------------------** Formulario para agregar libros **---------------------------** -->
 <!---------------------------------------------------------------------------------------------------->

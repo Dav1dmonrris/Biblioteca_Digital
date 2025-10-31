@@ -1,3 +1,6 @@
+<!--============================================================================================-->
+<!--                                  Catálogo de Libros (php)                                  -->
+<!--============================================================================================-->
 <?php
 session_start();
 if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'usuario'){
@@ -5,28 +8,33 @@ if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'usuario'){
     exit;
 }
 
-include('Conexion.php');
-$conexion = conexion();
+include('Conexion.php');                       # <- Incluir el archivo de conexión a la base de datos
+$conexion = conexion();                        # <- Establecer la conexión a la base de datos.
 
 // OBTENER LIBROS PARA LA TABLA
+//------------------------------*
 $resultado_libros = $conexion->query("SELECT l.titulo, a.nombre as autor, l.año as fecha_publicacion 
                                      FROM libros l 
                                      JOIN autores a ON l.id_autor = a.id_autor");
 ?>
 
+<!--============================================================================================-->
+<!--                                  Catálogo de Libros (html)                                  -->
+<!--============================================================================================-->
 <!DOCTYPE html>
 <html>  
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Libros">
-    <link rel="stylesheet" href="CSS/estilo.css">
+    <link rel="stylesheet" href="CSS/buscar_libro.css">
     <title>Libreria el inge</title>
 
 </head>
 <body>
 
     <!-- MENÚ DE USUARIO EN ESQUINA SUPERIOR DERECHA -->
+    <header>
     <div class="user-menu">
          <?php echo $_SESSION['usuario']; ?> | 
         <a href="perfil_usuario.php">Perfil</a> |
@@ -34,15 +42,15 @@ $resultado_libros = $conexion->query("SELECT l.titulo, a.nombre as autor, l.año
     </div>
 
     <h1 class="Titulo_Principal">Libreria el Inge</h1>
-    
+    </header>
+
     <nav>
         <center>
-
             <a href="autores.php">Autores</a> |
             <a href="generos.php">Géneros</a> |
-
         </center>
     </nav>
+    
     <br>
     
     <center>
