@@ -1,0 +1,164 @@
+
+/* RESET GENERAL */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* BODY Y FONDO */
+body {
+    background: linear-gradient(135deg, #f3dcdcee, #ffd1b5ee);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ENCABEZADOS */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+
+h3 {
+    color: #555;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+/* FORMULARIO DE AGREGAR LIBROS */
+form {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px 40px;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    margin: 0 auto 40px auto;
+}
+
+form span {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #444;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #ff7a50;
+    box-shadow: 0 0 8px rgba(255, 122, 80, 0.3);
+    outline: none;
+}
+
+form input[type="submit"] {
+    background-color: #ff7a50;
+    color: white;
+    padding: 12px 0;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #ff5722;
+    transform: translateY(-2px);
+}
+
+/* TABLAS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #ff7a50;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #ffe3d8;
+}
+
+/* BOTONES DE ACCIONES EN TABLA */
+a {
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    margin-right: 5px;
+    transition: 0.3s;
+}
+
+a[href*="editar"] {
+    background-color: #4a90e2;
+    color: white;
+}
+
+a[href*="editar"]:hover {
+    background-color: #357ab7;
+}
+
+a[href*="eliminar"] {
+    background-color: #e94e4e;
+    color: white;
+}
+
+a[href*="eliminar"]:hover {
+    background-color: #c43d3d;
+}
+
+/* BOTÓN CERRAR SESIÓN */
+.btn_CerrarSesion {
+    display: inline-block;
+    background-color: #555;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn_CerrarSesion:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+

@@ -1,3 +1,6 @@
+<!--============================================================================================-->
+<!--                             Codigo PHP para la gestion de libros                           -->       
+<!--============================================================================================-->
 <?php
 session_start();
 if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'admin'){
@@ -5,8 +8,8 @@ if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'admin'){
     exit;
 }
 
-include('Conexion.php');
-$conexion = conexion();
+include('Conexion.php');    # <------------------ Incluir el archivo de conexión a la base de datos
+$conexion = conexion();     # <------------------ Establecer la conexión a la base de datos
 
 if($_POST){
     $titulo = $_POST['titulo'];
@@ -27,24 +30,32 @@ $resultado_libros = $conexion->query("SELECT l.*, a.nombre as autor_nombre FROM 
 $autores = $conexion->query("SELECT * FROM autores");
 ?>
 
-
+<!--============================================================================================-->
+<!--                         Formulario de gestión de libros (html)                              -->
+<!--============================================================================================-->
 <!DOCTYPE html>
 <html>  
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Libros">
-    <link rel="stylesheet" href="CSS/estilo.css">
+    <link rel="stylesheet" href="CSS/libros.css">
     <title>Libreria el inge</title>
-
 </head>
-<h2>Gestión de Libros</h2>
 
+<header>
+<h2>Gestión de Libros</h2>
+</header>
+
+<!-- **---------------------------** Formulario para agregar libros **---------------------------** -->
+<!---------------------------------------------------------------------------------------------------->
 <form method="post">
-    Título: <input type="text" name="titulo" required><br>
-    Año: <input type="number" name="año" required><br>
-    Reseña: <textarea name="reseña"></textarea><br>
-    Autor: 
+    <h3>Agregar libros</h3>
+
+    <span>Título: </span><input type="text" name="titulo" required><br>
+    <span>Año: </span><input type="number" name="año" required><br>
+    <span>Reseña: </span><textarea name="reseña"></textarea><br>
+    <span>Autor:</span> 
     <select name="id_autor" required>
         <option value="">Seleccionar autor</option>
         <?php while($autor = $autores->fetch_assoc()): ?>
@@ -54,6 +65,8 @@ $autores = $conexion->query("SELECT * FROM autores");
     <input type="submit" value="Agregar Libro">
 </form>
 
+<!-- **---------------------------** Tabla de libros existentes **---------------------------** -->
+<!---------------------------------------------------------------------------------------------------->
 <h3>Libros Existentes</h3>
 <table border="1">
     <tr>
@@ -79,11 +92,9 @@ $autores = $conexion->query("SELECT * FROM autores");
     <?php endwhile; ?>
 </table>
 
-
-<!--- 20/10/22 -->
-
+<!-- **---------------------------** Tabla de usuarios existentes **---------------------------** -->
+<!---------------------------------------------------------------------------------------------------->
 <h3>Usuarios existentes</h3>
-
 <?php
 // OBTENER USUARIOS PARA LA TABLA
 $resultado_usuarios = $conexion->query("SELECT * FROM usuarios");
@@ -91,14 +102,14 @@ $resultado_usuarios = $conexion->query("SELECT * FROM usuarios");
 
 <table border="1">
     <tr>
-
         <th>Nombre</th>
         <th>Email</th>
         <th>Fecha de registro</th>
-        <th>Acciones</th>
-        
+        <th>Acciones</th> 
     </tr>
+
     <?php while($usu = $resultado_usuarios->fetch_assoc()): ?>
+
     <tr>
 
         <td><?php echo $usu['nombre']; ?></td>
@@ -106,9 +117,7 @@ $resultado_usuarios = $conexion->query("SELECT * FROM usuarios");
         <td><?php echo $usu['fecha_registro']; ?></td>
 
         <td>
-
             <a href="eliminar_usuario.php?id=<?php echo $usu['id_usuario']; ?>">Eliminar</a>
-
         </td>
     </tr>
 
@@ -116,6 +125,8 @@ $resultado_usuarios = $conexion->query("SELECT * FROM usuarios");
 
 </table>
 
+<!--- Enlace para cerrar sesión     -->
+<!------------------------------------>
 <br>
-<a href="logout.php">Cerrar Sesión</a>
+<a href="logout.php" class="btn_CerrarSesion">Cerrar Sesión</a>
 </html>
