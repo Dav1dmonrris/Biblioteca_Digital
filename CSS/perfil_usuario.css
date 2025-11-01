@@ -1,16 +1,82 @@
-
-
-body{
-    background-color: #f3dcdcee;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/*====================================================================*/
+/* RESET Y BODY ------------------------------------------------------*/
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* BODY Y FONDO ------------------------------------------------------*/
+body {
+    background: linear-gradient(135deg, #f3dcdcee, #ffd1b5ee);
     padding: 20px;
+    min-height: 100vh;
+}
+/* HEADER ------------------------------------------------------------*/
+header {
+    background-color: #ff9c9c; 
+    margin-left: -20px;     
+    margin-right: -40px;
+    margin-top: -20px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% + 40px);
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+/*====================================================================*/
+
+.perfil-card {
+    background-color: rgba(255,255,255,0.95);
+    padding: 30px 40px;
+    border-radius: 20px;
+    max-width: 400px;
+    margin: 50px auto; /* centrado horizontal y algo de espacio arriba */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-align: center;
 }
 
-/*  Cambiar el estilo de los links a botones  */
-/* ------------------------------------------ */
-.btn_EditarPerfil { /*Botón para editar perfil*/
-    background-color: #d58484;
+.perfil-card h2 {
+    margin-bottom: 20px;
+    color: #ff7a50;
+}
+
+.perfil-avatar {
+    width: 100px;              /* tamaño del avatar */
+    height: 100px;             /* tamaño cuadrado */
+    border-radius: 50%;        /* lo hace circular */
+    object-fit: cover;         /* recorta la imagen si no es cuadrada */
+    border: 3px solid #ff7a50; /* borde con color destacado */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* sombra suave */
+    margin-bottom: 20px;       /* espacio debajo del avatar */
+    display: block;            /* para que el margin funcione centrado */
+    margin-left: auto;
+    margin-right: auto;        /* centra la imagen */
+    transition: transform 0.3s ease; /* efecto suave */
+}
+
+.perfil-avatar:hover {
+    transform: scale(1.05);    /* pequeño efecto hover para animación */
+}
+
+.perfil-card p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.perfil-buttons a {
+    display: inline-block;
+    margin: 10px 5px; /* separa los botones */
+}
+
+.btn_EditarPerfil { 
+    background-color: #4a90e2;
     color: white;
     padding: 5px 48px;
     border: none;
@@ -19,12 +85,12 @@ body{
     transition: background-color 0.3s ease;
     text-decoration: none;
 }
-.btn_EditarPerfil:hover {   /*Efecto hover*/
-    background-color: #b36b6b;
+.btn_EditarPerfil:hover {  
+    background-color: #357ab7;
 }
 
-.btn_volver {   /*Botón para volver al inicio*/
-    background-color: #ff9d80;
+.btn_volver {   
+    background-color: #ffb347;
     color: white;
     padding: 5px 40px;
     border: none;
@@ -33,12 +99,12 @@ body{
     transition: background-color 0.3s ease;
     text-decoration: none;
 }
-.btn_volver:hover {  /*Efecto hover*/
-    background-color: #e67a5d;
+.btn_volver:hover {  
+    background-color: #ff9f1a;
 }
 
-.btn_CerrarSesion {  /*Botón para cerrar sesión*/
-    background-color: #ff4d4d;
+.btn_CerrarSesion { 
+    background-color: #e94e4e;
     color: white;
     padding: 5px 40px;
     border: none;
@@ -47,6 +113,6 @@ body{
     transition: background-color 0.3s ease;
     text-decoration: none;
 }
-.btn_CerrarSesion:hover {   /*Efecto hover*/
-    background-color: #e63232;
+.btn_CerrarSesion:hover {   
+    background-color: #c43d3d;
 }

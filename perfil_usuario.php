@@ -32,19 +32,27 @@ $usuario = $stmt->get_result()->fetch_assoc();
     </head>
 
     <body>
-        <h2>Mi Perfil</h2>
+        <header><h1>LIBRERÍA EL INGE</h1></header>
+        
+        <div class="perfil-card">
+            <h2>Mi Perfil</h2>
 
-        <!-- Mostrar información correspondiente del usuario -->
-        <!----------------------------------------------------->
-        <p><strong>Nombre:</strong> <?php echo $usuario['nombre']; ?></p>
-        <p><strong>Email:</strong> <?php echo $usuario['email']; ?></p>
-        <p><strong>Fecha de registro:</strong> <?php echo $usuario['fecha_registro']; ?></p>
+            <img src="Elementos/Ejemplo de diseño de perfil.png" alt="Avatar" class="perfil-avatar">
 
-        <!-- Mostrar botones de opciones para el usuario -->
-        <!------------------------------------------------->
-        <a href="actualizar_perfil.php" class="btn_EditarPerfil">Editar Perfil</a>
-        <a href="buscar_libro.php" class="btn_volver">Volver</a>
-        <a href="logout.php" class="btn_CerrarSesion">Cerrar Sesión</a>
+            <!-- Mostrar información correspondiente del usuario -->
+            <!----------------------------------------------------->
+            <p><strong>Nombre:</strong> <?php echo $usuario['nombre']; ?></p>
+            <p><strong>Email:</strong> <?php echo $usuario['email']; ?></p>
+            <p><strong>Fecha de registro:</strong> <?php echo $usuario['fecha_registro']; ?></p>
+
+            <!-- Mostrar botones de opciones para el usuario -->
+            <!------------------------------------------------->
+            <div class="perfil-buttons">
+                <a href="actualizar_perfil.php" class="btn_EditarPerfil">Editar Perfil</a>
+                <a href="buscar_libro.php" class="btn_volver">Volver</a>
+                <a href="logout.php" class="btn_CerrarSesion">Cerrar Sesión</a>
+            </div>
+        </div>
 
     </body>
 </html>

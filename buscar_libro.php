@@ -50,7 +50,7 @@ $resultado_libros = $conexion->query("SELECT l.titulo, a.nombre as autor, l.año
             <a href="generos.php">Géneros</a> |
         </center>
     </nav>
-    
+
     <br>
     
     <center>
@@ -59,7 +59,9 @@ $resultado_libros = $conexion->query("SELECT l.titulo, a.nombre as autor, l.año
     </center>
     <br><br>
 
+    <!--============================================================================-->
     <!-- TABLA DE LIBROS  -->
+    <!--
     <center>
     <h3>Catálogo de Libros</h3>
     <table border="1" style="margin: 20px auto;">
@@ -68,15 +70,30 @@ $resultado_libros = $conexion->query("SELECT l.titulo, a.nombre as autor, l.año
             <th>Autor</th>
             <th>Fecha de Publicación</th>
         </tr>
-        <?php while($libro = $resultado_libros->fetch_assoc()): ?>
+        <?php //while($libro = $resultado_libros->fetch_assoc()): ?>
         <tr>
-            <td><?php echo $libro['titulo']; ?></td>
-            <td><?php echo $libro['autor']; ?></td>
-            <td><?php echo $libro['fecha_publicacion']; ?></td>
+            <td><?php //echo $libro['titulo']; ?></td>
+            <td><?php //echo $libro['autor']; ?></td>
+            <td><?php //echo $libro['fecha_publicacion']; ?></td>
         </tr>
-        <?php endwhile; ?>
+        <?php //endwhile; ?>
     </table>
     </center>
+        -->
+    <!--============================================================================-->
+    <center>
+    <h3>Catálogo de Libros</h3>
+    <div class="libros-container">
+        <?php while($libro = $resultado_libros->fetch_assoc()): ?>
+        <div class="libro-card">
+            <h4><?php echo $libro['titulo']; ?></h4>
+            <p><strong>Autor:</strong> <?php echo $libro['autor']; ?></p>
+            <p><strong>Año de publicación:</strong> <?php echo $libro['fecha_publicacion']; ?></p>
+        </div>
+        <?php endwhile; ?>
+    </div>
+    </center>
+
 
 </body>
 </html>

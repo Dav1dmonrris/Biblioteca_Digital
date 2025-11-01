@@ -1,78 +1,111 @@
-body{
-    background-color: #f3dcdcee;
-    text-size-adjust: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+/*====================================================================*/
+/* RESET Y BODY ------------------------------------------------------*/
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* BODY Y FONDO ------------------------------------------------------*/
+body {
+    background: linear-gradient(135deg, #f3dcdcee, #ffd1b5ee);
     padding: 20px;
-    font-size: 30px;
-    justify-content: center;
+    min-height: 100vh;
+}
+/* HEADER ------------------------------------------------------------*/
+header {
+    background-color: #ff9c9c; 
+    margin-left: -20px;       
+    margin-right: -40px;
+    margin-top: -20px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% + 40px);
+    height: 100px;
+    color: white;
+    display: flex;
     align-items: center;
-    height: 100vh;
+    justify-content: center;
+    z-index: 1000;
+}
+/*====================================================================*/
+
+.perfil-card {
+    background-color: rgba(255,255,255,0.95);
+    padding: 30px 40px;
+    border-radius: 20px;
+    max-width: 400px;
+    margin: 50px auto; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-align: center;
 }
 
-h2{
-    text-align: center;
+.perfil-avatar {
+    margin-top: 40px;
+    width: 150px;              /* tamaño del avatar */
+    height: 150px;             /* tamaño cuadrado */
+    border-radius: 50%;        /* lo hace circular */
+    object-fit: cover;         /* recorta la imagen si no es cuadrada */
+    border: 3px solid #ff7a50; /* borde con color destacado */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* sombra suave */
+    margin-bottom: 20px;       /* espacio debajo del avatar */
+    display: block;            /* para que el margin funcione centrado */
+    margin-left: auto;
+    margin-right: auto;        /* centra la imagen */
+    transition: transform 0.3s ease; /* efecto suave */
+}
+
+.perfil-card h2 {
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.perfil-card p {
+    margin: 10px 0;
+    font-size: 16px;
     color: #333;
 }
 
-/*
-form {
-    background-position: center;
-    background-color: #ffffffcc;
-    padding: 30px 80px;
-    
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-    width: 320px;
-    text-align: center;
-    margin: 0 auto;
-}
-*/
-input[type="text"],
-input[type="email"] {
-    width: 80%;
+.perfil-card input[type="text"],
+.perfil-card input[type="email"] {
+    width: 100%;
     padding: 10px 12px;
-    margin: 8px 0;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    border-radius: 10px;
     font-size: 15px;
     transition: all 0.3s ease;
-    text-size-adjust: 100%;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-select:focus {
-    border-color: #2b2b2b;
-    box-shadow: 0 0 8px rgba(52, 52, 52, 0.3);
-    outline: none;
-}
-
-input[type="submit"] {
-    background-color: #ff9d80;
-    color: white;
-    padding: 5px 40px;
-    border: none;
-    border-radius: 20px;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-}
 
 .btn-cancelar {
     background-color: #d58484;
     color: white;
-    padding: 5px 48px;
-    border: none;
+    padding: 10px 25px;
     border-radius: 20px;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+    font-size: 15px;
     text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
 }
 
-p{
-    text-align: left;
-    margin-top: 10px;
-    color: #555;
-    font-weight: 500;
-    font-size: 20px;
+.btn-cancelar:hover {
+    background-color: #b36b6b;
+}
+
+.btn-actualizar {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-actualizar:hover {
+    background-color: #357ab7;
 }

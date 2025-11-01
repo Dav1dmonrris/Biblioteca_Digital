@@ -8,12 +8,10 @@
 /* BODY Y FONDO */
 body {
     background: linear-gradient(135deg, #f3dcdcee, #ffd1b5ee);
-    /*padding: 20px;*/
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
     min-height: 100vh;
-    /*margin-top: 115px;*/
 }
 
 header {
@@ -46,4 +44,37 @@ nav{
     justify-content: center;
     gap: 15px;
     margin-top: 10px;
+}
+
+.libros-container {
+    display: flex;              /* Usa flexbox para alinear los libros */
+    flex-wrap: wrap;            /* Permite que se muevan a la siguiente fila */
+    justify-content: center;    /* Centra los cards horizontalmente */
+    gap: 20px;                  /* Espacio entre cada card */
+    margin-top: 20px;
+}
+
+.libro-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 20px;
+    width: 250px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.libro-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.libro-card h4 {
+    margin-bottom: 10px;
+    color: #ff7a50;
+}
+
+.libro-card p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 14px;
 }

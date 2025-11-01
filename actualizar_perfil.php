@@ -52,20 +52,27 @@ if($_POST){
         <title>Libreria el inge</title>
     </head>
 
-    <h2>Editar Perfil</h2>
+    <body>
+        <header><h1>LIBRERÍA EL INGE</h1></header>
 
-    <!-- Formulario para actualizar el perfil del usuario -->
-    <!------------------------------------------------------>
-    <form method="post">
-        <p>Nombre:</p>
-        <!---Nombre:--> <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>" required><br>
-        <p>Email:</p>
-        <!--Email:--> <input type="email" name="email" value="<?php echo $usuario['email']; ?>" required><br>
+        <img src="Elementos/Ejemplo de diseño de perfil.png" alt="Avatar" class="perfil-avatar">
 
-        <br>
-        <input type="submit" value="Actualizar">
-        
-        <a href="perfil_usuario.php" class="btn-cancelar">Cancelar</a>
-    </form>
+        <div class="perfil-card">
+            <h2>Editar Perfil</h2>
 
+            <!-- Formulario para actualizar el perfil del usuario -->
+            <!------------------------------------------------------>
+            <form method="post">
+                <p>Nombre:</p>
+                <!---Nombre:--> <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>" required><br>
+                <p>Email:</p>
+                <!--Email:--> <input type="email" name="email" value="<?php echo $usuario['email']; ?>" required><br>
+
+                <br>
+                <input type="submit" value="Actualizar" class="btn-actualizar">
+                
+                <a href="perfil_usuario.php" class="btn-cancelar">Cancelar</a>
+            </form>
+        </div>
+    </body>
 </html>
