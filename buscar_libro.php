@@ -3,19 +3,43 @@
 <!--============================================================================================-->
 <?php
 session_start();
+echo "<!-- DEBUG: id_usuario: " . $_SESSION['id_usuario'] . " -->";
+echo "<!-- DEBUG: usuario: " . $_SESSION['usuario'] . " -->";
+echo "<!-- DEBUG: email: " . $_SESSION['email'] . " -->";
 if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'usuario'){
     header("Location: login.php");
     exit;
 }
 
-include('Conexion.php');                       # <- Incluir el archivo de conexión a la base de datos
-$conexion = conexion();                        # <- Establecer la conexión a la base de datos.
+include('Conexion.php');
+$conexion = conexion();
 
-// OBTENER LIBROS PARA LA TABLA
-//------------------------------*
-$resultado_libros = $conexion->query("SELECT l.titulo, a.nombre as autor, l.año as fecha_publicacion 
+// PROCESAR PRÉSTAMO DE LIBRO
+if(isset($_POST['prestar_libro'])){
+    $id_libro = $_POST['id_libro'];
+    $id_usuario = $_SESSION['id_usuario'];
+    
+    $fecha_prestamo = date('Y-m-d');
+    $fecha_devolucion = date('Y-m-d', strtotime('+15 days'));
+    
+    // INSERTO DIRECTAMENTE SIN PREPARE
+    $sql_prestar = "INSERT INTO prestamos (id_usuario, id_libro, fecha_prestamo, fecha_devolucion, estado) 
+                   VALUES ($id_usuario, $id_libro, '$fecha_prestamo', '$fecha_devolucion', 'prestado')";
+    
+    if($conexion->query($sql_prestar)){
+        echo "<script>alert('Libro prestado exitosamente');</script>";
+    } else {
+        echo "<script>alert('Error al prestar el libro');</script>";
+    }
+}
+
+// OBTENER LIBROS DISPONIBLES (que no están prestados)
+$resultado_libros = $conexion->query("SELECT l.id_libro, l.titulo, a.nombre as autor, l.año as fecha_publicacion 
                                      FROM libros l 
-                                     JOIN autores a ON l.id_autor = a.id_autor");
+                                     JOIN autores a ON l.id_autor = a.id_autor
+                                     WHERE l.id_libro NOT IN (
+                                         SELECT id_libro FROM prestamos WHERE estado = 'prestado'
+                                     )");
 ?>
 
 <!--============================================================================================-->
@@ -29,7 +53,6 @@ $resultado_libros = $conexion->query("SELECT l.titulo, a.nombre as autor, l.año
     <meta name="description" content="Libros">
     <link rel="stylesheet" href="CSS/buscar_libro.css">
     <title>Libreria el inge</title>
-
 </head>
 <body>
 
@@ -37,6 +60,8 @@ $resultado_libros = $conexion->query("SELECT l.titulo, a.nombre as autor, l.año
     <header>
     <div class="user-menu">
          <?php echo $_SESSION['usuario']; ?> | 
+        <a href="buscar_libro.php">Catalogo</a> |
+        <a href="Mis_Libros.php">Mis Libros</a> |
         <a href="perfil_usuario.php">Perfil</a> |
         <a href="logout.php">Cerrar Sesión</a>
     </div>
@@ -59,41 +84,24 @@ $resultado_libros = $conexion->query("SELECT l.titulo, a.nombre as autor, l.año
     </center>
     <br><br>
 
-    <!--============================================================================-->
-    <!-- TABLA DE LIBROS  -->
-    <!--
     <center>
-    <h3>Catálogo de Libros</h3>
-    <table border="1" style="margin: 20px auto;">
-        <tr>
-            <th>Libro</th>
-            <th>Autor</th>
-            <th>Fecha de Publicación</th>
-        </tr>
-        <?php //while($libro = $resultado_libros->fetch_assoc()): ?>
-        <tr>
-            <td><?php //echo $libro['titulo']; ?></td>
-            <td><?php //echo $libro['autor']; ?></td>
-            <td><?php //echo $libro['fecha_publicacion']; ?></td>
-        </tr>
-        <?php //endwhile; ?>
-    </table>
-    </center>
-        -->
-    <!--============================================================================-->
-    <center>
-    <h3>Catálogo de Libros</h3>
+    <h3>Catálogo de Libros Disponibles</h3>
     <div class="libros-container">
         <?php while($libro = $resultado_libros->fetch_assoc()): ?>
         <div class="libro-card">
             <h4><?php echo $libro['titulo']; ?></h4>
             <p><strong>Autor:</strong> <?php echo $libro['autor']; ?></p>
             <p><strong>Año de publicación:</strong> <?php echo $libro['fecha_publicacion']; ?></p>
+            
+            <!-- BOTÓN DE PRESTAR -->
+            <form method="POST" style="margin-top: 10px;">
+                <input type="hidden" name="id_libro" value="<?php echo $libro['id_libro']; ?>">
+                <button type="submit" name="prestar_libro" class="btn-prestar">Prestar Libro</button>
+            </form>
         </div>
         <?php endwhile; ?>
     </div>
     </center>
-
 
 </body>
 </html>
