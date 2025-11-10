@@ -26,7 +26,7 @@ $resultado_mis_libros = $conexion->query("
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Libros - Libreria el inge</title>
-    <link rel="stylesheet" href="CSS/buscar_libro.css">
+    <link rel="stylesheet" href="CSS/Mis_Libros.css">
 </head>
 <body>
 
@@ -38,7 +38,7 @@ $resultado_mis_libros = $conexion->query("
             <a href="perfil_usuario.php">Perfil</a> |
             <a href="logout.php">Cerrar Sesión</a>
         </div>
-        <h1 class="Titulo_Principal">Mis Libros Prestados</h1>
+        <h1 class="Titulo_Principal">Mis libros prestados</h1>
     </header>
 
     <center>
