@@ -1,3 +1,5 @@
+<!--=============================== php ======================================-->
+<!--==========================================================================-->
 <?php
 session_start();
 if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'usuario'){
@@ -8,14 +10,17 @@ if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'usuario'){
 include('Conexion.php');
 $conexion = conexion();
 
-// OBTENER LIBROS PRESTADOS
+// Obtener libros.
+// -----------------------------------
 $id_usuario = $_SESSION['id_usuario'];
 
 // Devolver el libro.
+// ---------------------------------
 if(isset($_POST['devolver_libro'])){
     $id_libro = $_POST['id_libro'];
 
     // Buscar el préstamo activo de ese libro para este usuario
+    // --------------------------------------------------------
     $sql_devolver = "UPDATE prestamos 
                      SET estado = 'devuelto' 
                      WHERE id_usuario = $id_usuario 
@@ -29,6 +34,8 @@ if(isset($_POST['devolver_libro'])){
     }
 }
 
+// Obtener libros prestados.
+// ------------------------------------------------------------
 $sql = "SELECT l.id_libro, l.titulo, a.nombre AS autor, l.año, 
                p.fecha_prestamo, p.fecha_devolucion, p.estado
         FROM prestamos p
@@ -41,63 +48,69 @@ $sql = "SELECT l.id_libro, l.titulo, a.nombre AS autor, l.año,
 $resultado_mis_libros = $conexion->query($sql);
 ?>
 
-<!--======================= Html ================================-->
-
+<!--=============================== Html ======================================-->
+<!--===========================================================================-->
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Libros - Libreria el inge</title>
-    <link rel="stylesheet" href="CSS/Mis_Libros.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mis Libros - Libreria el inge</title>
+        <link rel="stylesheet" href="CSS/Mis_Libros.css">
+    </head>
+    <body>
 
-    <header>
-        <div class="user-menu">
-            <?php echo $_SESSION['usuario']; ?> | 
-            <a href="buscar_libro.php">Catalogo</a> |
-            <a href="Mis_Libros.php">Mis Libros</a> |
-            <a href="perfil_usuario.php">Perfil</a> |
-            <a href="logout.php">Cerrar Sesión</a>
-        </div>
-        <h1 class="Titulo_Principal">Mis libros prestados</h1>
-    </header>
+        <header>
+            <!-- Menú de usuario -->
+            <!--------------------->
+            <div class="user-menu">
+                <?php echo $_SESSION['usuario']; ?> | 
+                <a href="buscar_libro.php">Catalogo</a> |
+                <a href="Mis_Libros.php">Mis Libros</a> |
+                <a href="perfil_usuario.php">Perfil</a> |
+                <a href="logout.php">Cerrar Sesión</a>
+            </div>
+            <h1 class="Titulo_Principal">Mis libros prestados</h1>
+        </header>
 
-    <main class="libros-container">
+        <main class="libros-container">
 
-    <?php if($resultado_mis_libros->num_rows > 0): ?>
-        <?php while($libro = $resultado_mis_libros->fetch_assoc()): ?>
-            <section class="libro-card">
-                <div class="info-libro">
-                    <h3><?php echo $libro['titulo']; ?></h3>
-                    <p><strong>Autor:</strong> <?php echo $libro['autor']; ?></p>
-                    <p><strong>Año:</strong> <?php echo $libro['año']; ?></p>
-                    <p><strong>Fecha de préstamo:</strong> <?php echo $libro['fecha_prestamo']; ?></p>
-                    <p><strong>Fecha de devolución:</strong> <?php echo $libro['fecha_devolucion']; ?></p>
-                    <p><strong>Estado:</strong> <span class="estado"><?php echo ucfirst($libro['estado']); ?></span></p>
-                </div>
+        <?php if($resultado_mis_libros->num_rows > 0): ?>
+            <?php while($libro = $resultado_mis_libros->fetch_assoc()): ?>
 
-                <!-- FORMULARIO PARA DEVOLVER -->
-                <form method="POST" onsubmit="return confirmarDevolucion();">
-                    <input type="hidden" name="id_libro" value="<?php echo $libro['id_libro']; ?>">
-                    <button type="submit" name="devolver_libro" class="btn-devolver">Devolver</button>
-                </form>
-            </section>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <p class="no-libros">No tienes libros prestados actualmente.</p>
-    <?php endif; ?>
+                <section class="libro-card">
+                    <div class="info-libro">
+                        <h3><?php echo $libro['titulo']; ?></h3>
+                        <p><strong>Autor:</strong> <?php echo $libro['autor']; ?></p>
+                        <p><strong>Año:</strong> <?php echo $libro['año']; ?></p>
+                        <p><strong>Fecha de préstamo:</strong> <?php echo $libro['fecha_prestamo']; ?></p>
+                        <p><strong>Fecha de devolución:</strong> <?php echo $libro['fecha_devolucion']; ?></p>
+                        <p><strong>Estado:</strong> <span class="estado"><?php echo ucfirst($libro['estado']); ?></span></p>
+                    </div>
 
-    </main>
+                    <!-- *** Apartado para añadir un url para leer los libros. *** -->
+                    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+                     
+                    <!-- Formulario (en forma de botón) para devolver el libro. -->
+                    <form method="POST" onsubmit="return confirmarDevolucion();">
+                        <input type="hidden" name="id_libro" value="<?php echo $libro['id_libro']; ?>">
+                        <button type="submit" name="devolver_libro" class="btn-devolver">Devolver</button>
+                    </form>
+                </section>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p class="no-libros">No tienes libros prestados actualmente.</p>
+        <?php endif; ?>
 
-<!-- JavaScript -->
-<script>
-function confirmarDevolucion() 
-{
-    return confirm("¿Seguro que deseas devolver este libro?");
-}
+        </main>
 
-</script>
-</body>
+        <!-- JavaScript -->
+        <script>
+        function confirmarDevolucion() 
+        {
+            return confirm("¿Segur@ que deseas devolver este libro?");
+        }
+
+        </script>
+    </body>
 </html>
