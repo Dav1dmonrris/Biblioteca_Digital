@@ -1,3 +1,6 @@
+/*=============================================================*/
+/*                Diseño base de header y body                 */
+/*=============================================================*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,7 +8,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* BODY Y FONDO */
 body {
     background: linear-gradient(135deg, #f3dcdcee, #ffd1b5ee);
     padding-left: 20px;
@@ -31,64 +33,177 @@ header {
     z-index: 1000;
 }
 
-/* MENÚ DE USUARIO EN ESQUINA SUPERIOR DERECHA */
-.user-menu{
+/* Menú del usuario en la esquina superior derecha */
+/* ----------------------------------------------- */
+.user-menu {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 25px;
+    right: 30px;
+    font-weight: 500;
+    font-size: 15px;
 }
 
-nav{
-    display:flex;
-    align-items: center;
+.user-menu a {
+    color: white;
+    text-decoration: none;
+    margin: 0 5px;
+    transition: opacity 0.2s ease;
+}
+
+.user-menu a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/*==============================================================*/
+/*                     FILTROS DE BÚSQUEDA                     */
+/*==============================================================*/
+.filtros {
+    background: rgba(255, 255, 255, 0.95);
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto 20px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
     justify-content: center;
+}
+
+.form-filtros {
+    display: flex;
     gap: 15px;
-    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
 }
 
+.form-filtros input[type="text"],
+.form-filtros select {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    width: 40%;
+    min-width: 180px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-filtros input[type="text"]:focus,
+.form-filtros select:focus {
+    border-color: #ff7a50;
+    box-shadow: 0 0 8px rgba(255, 122, 80, 0.3);
+}
+
+/*==============================================================*/
+/*                     LISTADO DE LIBROS                       */
+/*==============================================================*/
 .libros-container {
-    display: flex;              /* Usa flexbox para alinear los libros */
-    flex-wrap: wrap;            /* Permite que se muevan a la siguiente fila */
-    justify-content: center;    /* Centra los cards horizontalmente */
-    gap: 20px;                  /* Espacio entre cada card */
-    margin-top: 20px;
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
 }
 
+.libros-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Diseño del apartado de cada libro */
+/*-----------------------------------*/
 .libro-card {
     background-color: rgba(255, 255, 255, 0.95);
-    padding: 20px;
     border-radius: 20px;
-    width: 250px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 25px 30px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .libro-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
 }
 
-.libro-card h4 {
-    margin-bottom: 10px;
+.info-libro h3 {
     color: #ff7a50;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
-.libro-card p {
-    margin: 5px 0;
+.info-libro p {
+    margin: 3px 0;
+    font-size: 15px;
     color: #333;
-    font-size: 14px;
 }
+
+/* Botón de préstamo */
+/*-------------------*/
 .btn-prestar {
-    background: #ff6b6b;
+    background: #4285F4;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 15px;
     font-weight: bold;
-    transition: background 0.3s ease;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .btn-prestar:hover {
-    background: #ff5252;
+    background: #3367D6;
+    transform: translateY(-2px);
 }
+
+/* Botón de leer en línea. */
+/*-------------------------*/
+.btn-leer {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-leer:hover {
+    background: #43A047;
+    transform: translateY(-2px);
+}
+
+/*==============================================================*/
+/*                        RESPONSIVE                            */
+/*==============================================================*/
+/*@media (max-width: 700px) {
+    header {
+        height: auto;
+        flex-direction: column;
+        padding: 15px 0;
+    }
+
+    .user-menu {
+        position: relative;
+        margin-top: 10px;
+    }
+
+    .libro-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .btn-prestar {
+        width: 100%;
+    }
+}*/

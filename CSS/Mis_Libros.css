@@ -1,3 +1,6 @@
+/*=============================================================*/
+/*                Diseño base de header y body                 */
+/*=============================================================*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,7 +8,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* BODY Y FONDO */
 body {
     background: linear-gradient(135deg, #f3dcdcee, #ffd1b5ee);
     padding-left: 20px;
@@ -31,40 +33,136 @@ header {
     z-index: 1000;
 }
 
-
-/*=================== USER MENU ===================*/
+/* Menú del usuario en la esquina superior derecha */
+/* ----------------------------------------------- */
 .user-menu {
     position: absolute;
     top: 25px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.user-menu span {
-    font-weight: bold;
+    right: 30px;
+    font-weight: 500;
+    font-size: 15px;
 }
 
 .user-menu a {
     color: white;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    margin: 0 5px;
+    transition: opacity 0.2s ease;
 }
 
 .user-menu a:hover {
-    color: #ffe2e2;
-}
-
-.user-menu .activo {
+    opacity: 0.8;
     text-decoration: underline;
 }
 
-.user-menu .logout {
-    color: #fff3f3;
+/*==============================================================*/
+/*                     SECCIÓN PRINCIPAL                        */
+/*==============================================================*/
+.libros-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    text-align: left;
 }
 
+.libros-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #444;
+}
 
+/*==============================================================*/
+/*                        CADA LIBRO                            */
+/*==============================================================*/
+.libro-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 25px 30px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
+.libro-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
 
+/* Información del libro */
+/*-----------------------*/
+.info-libro h3 {
+    color: #ff7a50;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.info-libro p {
+    margin: 3px 0;
+    font-size: 15px;
+    color: #333;
+}
+
+/* Estado */
+.estado {
+    color: #ff5252;
+    font-weight: bold;
+}
+
+/*==============================================================*/
+/*                        BOTÓN DEVOLVER                        */
+/*==============================================================*/
+.btn-devolver {
+    background: #E53935;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-devolver:hover {
+    background: #C62828;
+    transform: translateY(-2px);
+}
+
+/*==============================================================*/
+/*                    MENSAJE SIN LIBROS                        */
+/*==============================================================*/
+.no-libros {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 17px;
+    color: #555;
+}
+
+/*==============================================================*/
+/*                          RESPONSIVE                          */
+/*==============================================================*/
+@media (max-width: 700px) {
+    header {
+        height: auto;
+        flex-direction: column;
+        padding: 15px 0;
+    }
+
+    .user-menu {
+        position: relative;
+        margin-top: 10px;
+    }
+
+    .libro-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .btn-devolver {
+        width: 100%;
+    }
+}
