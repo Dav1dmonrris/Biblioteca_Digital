@@ -1,0 +1,112 @@
+/* RESET GENERAL */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* BODY */
+body {
+    background: linear-gradient(135deg, #f3dcdcee, #ffd1b5ee);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+/* TÍTULO */
+h2 {
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* FORMULARIO DE EDICIÓN */
+form {
+    background-color: rgba(255, 255, 255, 0.97);
+    padding: 35px 45px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    width: 400px;
+}
+
+form span,
+form label {
+    display: block;
+    margin-bottom: 6px;
+    color: #444;
+    font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #ff7a50;
+    box-shadow: 0 0 8px rgba(255, 122, 80, 0.3);
+    outline: none;
+}
+
+/* BOTÓN DE ACTUALIZAR */
+form input[type="submit"] {
+    background-color: #4B9CD3;
+    color: white;
+    padding: 12px 0;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #2E86C1;
+    transform: translateY(-2px);
+}
+
+/* BOTÓN DE CANCELAR */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+/* AJUSTE RESPONSIVO */
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+        padding: 25px;
+    }
+    h2 {
+        font-size: 26px;
+    }
+}

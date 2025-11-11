@@ -11,23 +11,80 @@ if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] != 'admin'){
 include('Conexion.php');    # <------------------ Incluir el archivo de conexión a la base de datos
 $conexion = conexion();     # <------------------ Establecer la conexión a la base de datos
 
+// Agregar un nuevo libro.
+// -----------------------
 if($_POST){
     $titulo = $_POST['titulo'];
     $año = $_POST['año'];
     $id_autor = $_POST['id_autor'];
     $reseña = $_POST['reseña'];
+
+    // Para subir portada.
+    // -------------------
+    $ruta_portada = '';
+    if(isset($_FILES['portada']) && $_FILES['portada']['error'] == 0){
+        $nombreArchivo = time() . "_" . basename($_FILES['portada']['name']);
+        $rutaDestino = "Portadas/" . $nombreArchivo;
+
+        if(move_uploaded_file($_FILES['portada']['tmp_name'], $rutaDestino)){
+            $ruta_portada = $rutaDestino;
+        }
+    }
     
-    $sql = "INSERT INTO libros (titulo, año, id_autor, reseña) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO libros (titulo, año, id_autor, reseña, portada) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("siis", $titulo, $año, $id_autor, $reseña);
+    $stmt->bind_param("siis", $titulo, $año, $id_autor, $reseña, $ruta_portada);
     $stmt->execute();
     
     header("Location: libros.php");
     exit;
 }
 
+// Consultas.
+// ------------------------------------------
+$resultado_libros = $conexion->query("
+    SELECT l.*, a.nombre as autor_nombre 
+    FROM libros l 
+    JOIN autores a ON l.id_autor = a.id_autor
+    ORDER BY l.titulo ASC
+");
+
 $resultado_libros = $conexion->query("SELECT l.*, a.nombre as autor_nombre FROM libros l JOIN autores a ON l.id_autor = a.id_autor");
 $autores = $conexion->query("SELECT * FROM autores");
+
+// Libros más prestados
+// --------------------
+$sql_top_libros = "
+    SELECT l.titulo, COUNT(p.id_libro) AS total_prestamos
+    FROM prestamos p
+    JOIN libros l ON p.id_libro = l.id_libro
+    GROUP BY l.id_libro
+    ORDER BY total_prestamos DESC
+    LIMIT 5";
+$top_libros = $conexion->query($sql_top_libros);
+
+// Usuarios con más préstamos
+// --------------------------
+$sql_top_usuarios = "
+    SELECT u.nombre, COUNT(p.id_prestamo) AS total
+    FROM prestamos p
+    JOIN usuarios u ON p.id_usuario = u.id_usuario
+    GROUP BY u.id_usuario
+    ORDER BY total DESC
+    LIMIT 5";
+$top_usuarios = $conexion->query($sql_top_usuarios);
+
+// Géneros más prestados
+// ---------------------
+$sql_top_generos = "
+    SELECT g.nombre AS genero, COUNT(p.id_prestamo) AS total
+    FROM prestamos p
+    JOIN libros l ON p.id_libro = l.id_libro
+    JOIN generos g ON l.id_genero = g.id_genero
+    GROUP BY g.id_genero
+    ORDER BY total DESC
+    LIMIT 5";
+$top_generos = $conexion->query($sql_top_generos);
 ?>
 
 <!--============================================================================================-->
@@ -49,7 +106,7 @@ $autores = $conexion->query("SELECT * FROM autores");
 
 <!-- **---------------------------** Formulario para agregar libros **---------------------------** -->
 <!---------------------------------------------------------------------------------------------------->
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <h3>Agregar libros</h3>
 
     <span>Título: </span><input type="text" name="titulo" required><br>
@@ -62,8 +119,75 @@ $autores = $conexion->query("SELECT * FROM autores");
             <option value="<?php echo $autor['id_autor']; ?>"><?php echo $autor['nombre']; ?></option>
         <?php endwhile; ?>
     </select><br>
+
+    <!-- Opción de agregar libro -->
+    <span>Portada:</span>
+    <input type="file" name="portada" accept="image/*"><br><br>
+
     <input type="submit" value="Agregar Libro">
 </form>
+
+<!-- **----------------------------------** Estadísticas **--------------------------------------** -->
+<!-- ---------------------------------------------------------------------------------------------- -->
+ <h2>Estadísticas de la Biblioteca</h2>
+
+<div class="estadisticas-container">
+
+    <!-- Libros más prestados -->
+    <div class="estadistica">
+        <h3>Libros más prestados</h3>
+        <table>
+            <tr><th>Título</th><th>Total de Préstamos</th></tr>
+            <?php if ($top_libros->num_rows > 0): ?>
+                <?php while($row = $top_libros->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $row['titulo']; ?></td>
+                        <td><?php echo $row['total_prestamos']; ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <tr><td colspan="2">Sin registros aún</td></tr>
+            <?php endif; ?>
+        </table>
+    </div>
+
+    <!-- Usuarios con más préstamos -->
+    <div class="estadistica">
+        <h3>Usuarios con más préstamos</h3>
+        <table>
+            <tr><th>Usuario</th><th>Total</th></tr>
+            <?php if ($top_usuarios->num_rows > 0): ?>
+                <?php while($row = $top_usuarios->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $row['nombre']; ?></td>
+                        <td><?php echo $row['total']; ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <tr><td colspan="2">Sin registros aún</td></tr>
+            <?php endif; ?>
+        </table>
+    </div>
+
+    <!-- Géneros más populares -->
+    <div class="estadistica">
+        <h3>Géneros más populares</h3>
+        <table>
+            <tr><th>Género</th><th>Total</th></tr>
+            <?php if ($top_generos->num_rows > 0): ?>
+                <?php while($row = $top_generos->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $row['genero']; ?></td>
+                        <td><?php echo $row['total']; ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <tr><td colspan="2">Sin registros aún</td></tr>
+            <?php endif; ?>
+        </table>
+    </div>
+
+</div>
 
 <!-- **---------------------------** Tabla de libros existentes **---------------------------** -->
 <!---------------------------------------------------------------------------------------------------->
@@ -71,6 +195,7 @@ $autores = $conexion->query("SELECT * FROM autores");
 <table border="1">
     <tr>
         <th>ID</th>
+        <th>Portada</th>
         <th>Título</th>
         <th>Año</th>
         <th>Autor</th>
@@ -80,6 +205,12 @@ $autores = $conexion->query("SELECT * FROM autores");
     <?php while($libro = $resultado_libros->fetch_assoc()): ?>
     <tr>
         <td><?php echo $libro['id_libro']; ?></td>
+
+        <td>
+            <img src="<?php echo !empty($libro['portada']) ? $libro['portada'] : 'imagenes/default.jpg'; ?>" 
+                 alt="Portada" class="mini-portada">
+        </td>
+
         <td><?php echo $libro['titulo']; ?></td>
         <td><?php echo $libro['año']; ?></td>
         <td><?php echo $libro['autor_nombre']; ?></td>

@@ -36,7 +36,7 @@ if(isset($_POST['devolver_libro'])){
 
 // Obtener libros prestados.
 // ------------------------------------------------------------
-$sql = "SELECT l.id_libro, l.titulo, a.nombre AS autor, l.año, 
+$sql = "SELECT l.id_libro, l.titulo, l.portada, a.nombre AS autor, l.año, 
                p.fecha_prestamo, p.fecha_devolucion, p.estado
         FROM prestamos p
         JOIN libros l ON p.id_libro = l.id_libro
@@ -79,6 +79,14 @@ $resultado_mis_libros = $conexion->query($sql);
             <?php while($libro = $resultado_mis_libros->fetch_assoc()): ?>
 
                 <section class="libro-card">
+
+                    <!-- Añadir la imagen del libro. -->
+                    <div class="img-libro">
+                        <img src="<?php echo !empty($libro['portada']) ? $libro['portada'] : 'Portadas/PorDefecto.jpg'; ?>" 
+                             alt="Portada de <?php echo $libro['titulo']; ?>">
+                    </div>
+
+                    <!-- Seccion de la info del libro. -->
                     <div class="info-libro">
                         <h3><?php echo $libro['titulo']; ?></h3>
                         <p><strong>Autor:</strong> <?php echo $libro['autor']; ?></p>
@@ -90,7 +98,7 @@ $resultado_mis_libros = $conexion->query($sql);
 
                     <!-- *** Apartado para añadir un url para leer los libros. *** -->
                     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-                     
+
                     <!-- Formulario (en forma de botón) para devolver el libro. -->
                     <form method="POST" onsubmit="return confirmarDevolucion();">
                         <input type="hidden" name="id_libro" value="<?php echo $libro['id_libro']; ?>">

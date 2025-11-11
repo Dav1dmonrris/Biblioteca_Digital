@@ -145,6 +145,14 @@ a {
     transition: 0.3s;
 }
 
+.mini-portada {
+    width: 60px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
 a[href*="editar"] {
     background-color: #4a90e2;
     color: white;
@@ -180,3 +188,49 @@ a[href*="eliminar"]:hover {
     transform: translateY(-2px);
 }
 
+/* ======================================================= */
+/*                SECCIÓN DE ESTADÍSTICAS                  */
+/* ======================================================= */
+
+.estadisticas-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.estadistica {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 25px 30px;
+    width: 320px;
+    text-align: center;
+}
+
+.estadistica h3 {
+    color: #ff7a50;
+    margin-bottom: 15px;
+}
+
+.estadistica table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.estadistica th {
+    background-color: #ff7a50;
+    color: white;
+    padding: 8px;
+}
+
+.estadistica td {
+    border-bottom: 1px solid #ddd;
+    padding: 6px;
+}
+
+.estadistica tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

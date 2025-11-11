@@ -40,7 +40,7 @@ $filtro_genero = isset($_GET['genero']) ? $_GET['genero'] : '';
 $generos_result = $conexion->query("SELECT nombre FROM generos ORDER BY nombre ASC");
 
 // Realizar consulta de libros (sin excluir prestados). -----------------------------------------------------
-$sql_libros = "SELECT l.id_libro, l.titulo, a.nombre AS autor, l.año AS fecha_publicacion, g.nombre AS genero
+$sql_libros = "SELECT l.id_libro, l.titulo, l.portada, l.reseña, a.nombre AS autor, l.año AS fecha_publicacion, g.nombre AS genero
                FROM libros l
                JOIN autores a ON l.id_autor = a.id_autor
                JOIN generos g ON l.id_genero = g.id_genero
@@ -131,11 +131,20 @@ $resultado_libros = $conexion->query($sql_libros);
                 <!-- Generar "tarjeta" donde se visualizarán los libros. -->
                 <!--------------------------------------------------------->
                 <section class="libro-card">
+
+                    <!-- Sección para la imagen del libro. -->
+                    <div class="img-libro">
+                        <img src="<?php echo !empty($libro['portada']) ? $libro['portada'] : 'Portadas/PorDefecto.jpg'; ?>" 
+                             alt="Portada de <?php echo $libro['titulo']; ?>">
+                    </div>
+
+                    <!-- Mostrar información del libro. -->
                     <div class="info-libro">
                         <h3><?php echo $libro['titulo']; ?></h3>
                         <p><strong>Autor:</strong> <?php echo $libro['autor']; ?></p>
                         <p><strong>Género:</strong> <?php echo $libro['genero']; ?></p>
                         <p><strong>Año:</strong> <?php echo $libro['fecha_publicacion']; ?></p>
+                        <p><strong>Reseña:</strong> <?php echo $libro['reseña']; ?></p>
                     </div>
 
                     <?php if($ya_prestado): ?>
