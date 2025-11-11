@@ -18,6 +18,9 @@ if($_POST){
     $año = $_POST['año'];
     $id_autor = $_POST['id_autor'];
     $reseña = $_POST['reseña'];
+    $ruta_portada = $_POST['portada'];
+    
+
 
     // Para subir portada.
     // -------------------
@@ -33,7 +36,7 @@ if($_POST){
     
     $sql = "INSERT INTO libros (titulo, año, id_autor, reseña, portada) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("siis", $titulo, $año, $id_autor, $reseña, $ruta_portada);
+    $stmt->bind_param("siiss", $titulo, $año, $id_autor, $reseña, $ruta_portada);
     $stmt->execute();
     
     header("Location: libros.php");
@@ -124,7 +127,7 @@ $top_generos = $conexion->query($sql_top_generos);
     <span>Portada:</span>
     <input type="file" name="portada" accept="image/*"><br><br>
 
-    <input type="submit" value="Agregar Libro">
+    <input type="submit" value="AgregarLibro">
 </form>
 
 <!-- **----------------------------------** Estadísticas **--------------------------------------** -->
