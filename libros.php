@@ -19,7 +19,7 @@ if($_POST){
     $id_autor = $_POST['id_autor'];
     $reseña = $_POST['reseña'];
     $ruta_portada = $_POST['portada'];
-    
+    $id_genero = $_POST['id_genero'];
 
 
     // Para subir portada.
@@ -34,9 +34,9 @@ if($_POST){
         }
     }
     
-    $sql = "INSERT INTO libros (titulo, año, id_autor, reseña, portada) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO libros (titulo, año, id_autor, reseña, portada, id_genero) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("siiss", $titulo, $año, $id_autor, $reseña, $ruta_portada);
+    $stmt->bind_param("siissi", $titulo, $año, $id_autor, $reseña, $ruta_portada, $id_genero);
     $stmt->execute();
     
     header("Location: libros.php");
@@ -49,11 +49,13 @@ $resultado_libros = $conexion->query("
     SELECT l.*, a.nombre as autor_nombre 
     FROM libros l 
     JOIN autores a ON l.id_autor = a.id_autor
+    JOIN generos g ON l.id_genero = g.id_genero
     ORDER BY l.titulo ASC
 ");
 
-$resultado_libros = $conexion->query("SELECT l.*, a.nombre as autor_nombre FROM libros l JOIN autores a ON l.id_autor = a.id_autor");
+//$resultado_libros = $conexion->query("SELECT l.*, a.nombre as autor_nombre FROM libros l JOIN autores a ON l.id_autor = a.id_autor");
 $autores = $conexion->query("SELECT * FROM autores");
+$generos = $conexion->query("SELECT * FROM generos");
 
 // Libros más prestados
 // --------------------
@@ -115,13 +117,22 @@ $top_generos = $conexion->query($sql_top_generos);
     <span>Título: </span><input type="text" name="titulo" required><br>
     <span>Año: </span><input type="number" name="año" required><br>
     <span>Reseña: </span><textarea name="reseña"></textarea><br>
-    <span>Autor:</span> 
+
+    <span>Autor:</span>
     <select name="id_autor" required>
         <option value="">Seleccionar autor</option>
         <?php while($autor = $autores->fetch_assoc()): ?>
             <option value="<?php echo $autor['id_autor']; ?>"><?php echo $autor['nombre']; ?></option>
         <?php endwhile; ?>
     </select><br>
+
+    <span>Género:</span>
+        <select name="id_genero" required>
+        <option value="">Seleccionar género</option>
+        <?php while($gen = $generos->fetch_assoc()): ?>
+            <option value="<?php echo $gen['id_genero']; ?>"><?php echo $gen['nombre']; ?></option>
+        <?php endwhile; ?>
+        </select><br>
 
     <!-- Opción de agregar libro -->
     <span>Portada:</span>
@@ -210,7 +221,7 @@ $top_generos = $conexion->query($sql_top_generos);
         <td><?php echo $libro['id_libro']; ?></td>
 
         <td>
-            <img src="<?php echo !empty($libro['portada']) ? $libro['portada'] : 'imagenes/default.jpg'; ?>" 
+            <img src="<?php echo !empty($libro['portada']) ? $libro['portada'] : 'Portadas/default.jpg'; ?>" 
                  alt="Portada" class="mini-portada">
         </td>
 
